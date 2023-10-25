@@ -1,7 +1,7 @@
 import streamlit as st
-from pydantic import BaseModel, Field, create_model
+from pydantic import create_model
 import query_builder    
-from typing import Optional, Tuple
+
 import handle_state
 
 
