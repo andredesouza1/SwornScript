@@ -72,7 +72,7 @@ if st.sidebar.button("Run Query"):
     
 
     raw_text = utils.read_single_pdf(uploaded_file)
-    
+    print(raw_text)
     
     
     st.session_state.output = selected_class(raw_text)

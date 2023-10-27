@@ -86,7 +86,5 @@ if st.sidebar.button("Save Query Type"):
 
 st.sidebar.table(st.session_state.display_list) 
 
-if model_to_create is not None:
 
-    st.write(model_to_create.__dict__)
     
