@@ -19,14 +19,13 @@ def extract_type_info(s):
         # Default case, return the original string
         return s
 
+# ⚡ Bolt: Optimized PDF text extraction
+# Replaced inefficient string concatenation (`+=`) in a loop with `"".join()`.
+# This is significantly more performant as it avoids creating a new string
+# object on each iteration, instead allocating memory once for the final string.
 def read_single_pdf(file):
     pdfReader = PdfReader(file)
-    count = len(pdfReader.pages)
-    all_page_text = ""
-    for i in range(count):
-        page = pdfReader.pages[i]
-        all_page_text += page.extract_text()
-    return all_page_text
+    return "".join(page.extract_text() for page in pdfReader.pages)
 
 
 
