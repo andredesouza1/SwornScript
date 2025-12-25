@@ -81,7 +81,7 @@ if st.sidebar.button("Save Query Type"):
             print(param_dict)
             # Dynamically create the BarModel class
             model_to_create = create_model(query_name, **param_dict, __base__=query_builder.CustomQueryBase)
-            st.session_state.query_instances.append(model_to_create) 
+            st.session_state.query_instances[query_name] = model_to_create
     
 
 st.sidebar.table(st.session_state.display_list) 
