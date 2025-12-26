@@ -11,7 +11,8 @@ handle_state.set_initial_states()
 st.title('Query Results')
 
 
-class_names = [instance.__name__ for instance in st.session_state.query_instances]
+# Performance Optimization: Use dict.keys() for direct access to query names.
+class_names = list(st.session_state.query_instances.keys())
 
 # Create a select box with the class names
 selected_class_name = st.sidebar.selectbox("Select the query you want to run", class_names)      
@@ -22,12 +23,9 @@ uploaded_file = st.sidebar.file_uploader("Upload a document to run the query on"
 if st.sidebar.button("Run Query"):
     st.session_state.output = None
     st.session_state.df = None
-    # Find the selected class in the list
-    selected_class = None
-    for class_instance in st.session_state.query_instances:
-        if class_instance.__name__ == selected_class_name:
-            selected_class = class_instance
-            break
+    # ⚡ Bolt: Replaced O(n) linear search with O(1) dictionary lookup.
+    # This provides a significant performance improvement when the number of queries is large.
+    selected_class = st.session_state.query_instances.get(selected_class_name)
 
     if selected_class:
         print(selected_class)
