@@ -21,11 +21,10 @@ def extract_type_info(s):
 
 def read_single_pdf(file):
     pdfReader = PdfReader(file)
-    count = len(pdfReader.pages)
-    all_page_text = ""
-    for i in range(count):
-        page = pdfReader.pages[i]
-        all_page_text += page.extract_text()
+    # ⚡ Bolt: Use a generator expression and "".join() for faster string concatenation.
+    # This is more efficient than using the `+=` operator in a loop because it
+    # avoids creating a new string object in memory on each iteration.
+    all_page_text = "".join(page.extract_text() for page in pdfReader.pages)
     return all_page_text
 
 
