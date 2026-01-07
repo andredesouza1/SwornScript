@@ -21,7 +21,7 @@ def set_initial_states():
         st.session_state.display_list = st.session_state.display_list  
 
     if 'query_instances' not in st.session_state:
-        st.session_state.query_instances = []
+        st.session_state.query_instances = {}
     else:
         st.session_state.query_instances = st.session_state.query_instances
 
